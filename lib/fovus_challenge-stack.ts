@@ -45,7 +45,7 @@ export class FovusChallengeStack extends cdk.Stack {
 
     new BucketDeployment(this, 'DeployWebsiteContent', {
       sources: [
-        Source.asset('front-end/react-challenge/dist'),
+        Source.asset('../front-end/dist'),
         Source.asset('./scripts')
       ],
       destinationBucket: WebUIHostingS3Bucket,
@@ -56,7 +56,7 @@ export class FovusChallengeStack extends cdk.Stack {
     const LambdaFunctionPresignedURL = new Function(this, 'LambdaFunctionPresignedURL', {
       runtime: Runtime.NODEJS_LATEST,
       handler: 'index.handler',
-      code: Code.fromAsset('lambda_PresignedURL'),
+      code: Code.fromAsset('PresignedURL_lambda'),
       timeout: cdk.Duration.seconds(60),
       environment: {
         BUCKET_NAME: StoreuserFilesS3Bucket.bucketName,

@@ -23,7 +23,7 @@ export const handler: DynamoDBStreamHandler = async (event: DynamoDBStreamEvent)
     }
 
     const sortedImages = imageResult.Images
-      .filter(image => image.CreationDate) // Ensure CreationDate is defined
+      .filter(image => image.CreationDate)
       .sort((a, b) => new Date(b.CreationDate!).getTime() - new Date(a.CreationDate!).getTime());
 
     if (sortedImages.length === 0) {
